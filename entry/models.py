@@ -4,9 +4,11 @@ from django.utils import timezone # imporing timezone to get the time each entry
 # Create your models here.
 
 class Entry(models.Model):
+    
     title = models.CharField(max_length=100)
     content = models.CharField(max_length=300)
     date_created = models.DateTimeField(default=timezone.now)
+
 
 
     def __str__(self):
