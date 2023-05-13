@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+
+{% block title%}
+eii
+{% endblock title%}
+
+{% block content %}
+   
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Hush Diary</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                   <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="{% url 'add-new' %}">Add New Diary</a>
+                   </li>
+                  
+                </ul>
+             </div> 
+
+    </div>
+        <!-- <a class="navbar-brand mx-auto" href="/">All Entries</a> -->
+
+    </nav> 
+<form method="post">
+    {% csrf_token %}
+    <div class="container mt-5 ">
+        <div class="row mx-auto justify-content-center">
+    
+          <div class="col-md-4 ">
+            <h2 class="text-white bg-dark text-center p-3">Edit Diary</h2>
+            <br>
+    
+            <form action="/" method="post">
+            {%csrf_token%}
+            <div class="form-group">
+                <input type="text" class="form-control mt-2"placeholder="title of the diary" name="title" value="{{current_entry.title}}"> 
+              </div>
+            <br>
+            <div class="form-group">
+                <label for="">content</label>
+                <textarea name="content" rows="10" style="width: 100%; height: 200px;" >{{current_entry.content}}</textarea>
+
+                
+            </div>
+      
+              <br>
+              {% comment %} <input type="datetime-local" id="myDateTime" name="myDateTime" value="{{ datetime.now().strftime('%Y-%m-%dT%H:%M') }}"> {% endcomment %}
+             
+
+              <input type="text" id="my-date-time-field" name="date_created" value="{{ current_datetime|date:'Y-m-d H:i' }}">
+              <script>
+                // use Moment.js to format the date and time string
+                var date = moment('{{ current_datetime|date:"Y-m-d H:i" }}', 'YYYY-MM-DD HH:mm');
+                // set the value of the input field to the formatted date and time string
+                document.getElementById('my-date-time-field').value = date.format('YYYY-MM-DD HH:mm');
+              </script>
+             
+    <br>
+    <br>
+            <div class="d-grid gap-2">
+                <button class="btn btn-success" type="submit">Submit</button>
+            
+            </div>
+            </form>
+            <br>
+        
+        </div>
+    
+    
+        </div>
+    
+    </div>
+    
+    </form>
+
+
+{% endblock content %}
