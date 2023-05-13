@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Entry# importing the model entries
-
+from django.contrib import messages
 import datetime
 # Create your views here.
 
@@ -33,8 +33,7 @@ def addNew(request):
         new_entry = Entry.objects.create(title=title,content=content,date_created=date_created)
         new_entry.save()
         return redirect('/')
-   
-       
+
     
     return render(request, "entry/form.html",{'current_datetime': current_datetime})
 

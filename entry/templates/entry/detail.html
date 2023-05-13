@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} #inheriting from the base template
 {% load static %}
 
 {% block title %}
@@ -8,11 +8,12 @@
 {% endblock title %}
 
 {% block cssfiles %}
-<link rel="stylesheet" href="{% static '/entry/list.css' %}">
+<link rel="stylesheet" href="{% static '/entry/list.css' %}"> #linking the css file to the file
 {% endblock cssfiles %}
 
 
 {% block content %}
+# the nav bar using bootstap
 <nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">Hush Diary</a>
@@ -21,18 +22,13 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
-                 
-                  
                 </ul>
-             </div> 
-
+            </div>
     </div>
-        <!-- <a class="navbar-brand mx-auto" href="/">All Entries</a> -->
-
-    </nav> 
+</nav> 
 
 
-
+#using the django template language , getting the current entry id and displaying the results
     <article>
         <h2>{{ entry.date_created|date:'Y-m-d H:i' }}</h2>
         <h3>{{ entry.title }}</h3>
